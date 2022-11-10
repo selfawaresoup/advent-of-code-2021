@@ -1,6 +1,6 @@
 use std::collections::VecDeque;
 
-static INPUT:&str = include_str!("day-01-2-input");
+static INPUT:&str = include_str!("day-01-input");
 
 fn get_input() -> Vec<u64> {
 	let s = String::from(INPUT);
