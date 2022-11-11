@@ -52,7 +52,7 @@ fn sum(counters: &HashMap<u64, u64>) -> u64 {
 }
 
 fn main() {
-	let mut fish = get_input();
+	let fish = get_input();
 
 	let mut counters = get_new_counters();
 

@@ -1,4 +1,4 @@
-use std::collections::{HashSet, HashMap};
+use std::collections::{HashSet};
 
 static INPUT:&str = include_str!("day-08-input");
 
