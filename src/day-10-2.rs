@@ -97,9 +97,8 @@ impl ToString for Token {
 	}
 }
 
-fn check_line(line: &Line) -> Option<Token> {
+fn check_line(line: &Line) -> Option<Line> {
 	let mut stack: Vec<Token> = vec![];
-
 
 	for token in line {
 		if !token.closing {
@@ -112,28 +111,38 @@ fn check_line(line: &Line) -> Option<Token> {
 		let last = stack.pop().unwrap();
 
 		if !last.matches(token) {
-			return Some(token.to_owned());
+			return None;
 		} 
 		
 	}
 
-	None
+	Some(stack)
 }
 
 fn main() {
 	let program = get_input();
-	let mut sum = 0;
+	let mut scores: Vec<i64> = vec![];
 
 	for line in program {
-		if let Some(t) = check_line(&line) {
-			sum += match t.delimiter {
-				Delimiter::Parenthesis => 3,
-				Delimiter::Bracket => 57,
-				Delimiter::Brace => 1197,
-				Delimiter::AngleBracket => 25137,
+		let mut score = 0;
+		if let Some(mut incomplete) = check_line(&line) {
+			while let Some(token) = incomplete.pop() {
+				print!("{}", token.to_string());
+				score *= 5;
+				score += match token.delimiter {
+					Delimiter::Parenthesis => 1,
+					Delimiter::Bracket => 2,
+					Delimiter::Brace => 3,
+					Delimiter::AngleBracket => 4,
+				}
 			}
+			print!("\n");
+			scores.push(score);
 		}
 	}
 
-	println!("{sum}");
+	scores.sort();
+	let middle_score = scores.get(scores.len() / 2);
+
+	println!("{:?}", middle_score);
 }
