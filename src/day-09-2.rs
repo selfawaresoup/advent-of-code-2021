@@ -98,6 +98,7 @@ impl HeightMap {
 		basin
 	}
 
+	#[allow(dead_code)]
 	fn render_basin(&self, basin: &HashSet<Point>) {
 		for y in 0..self.height {
 			for x in 0..self.width {
@@ -113,6 +114,7 @@ impl HeightMap {
 		print!("\n");
 	}
 
+	#[allow(dead_code)]
 	fn render_map(&self) {
 		for y in 0..self.height {
 			for x in 0..self.width {
