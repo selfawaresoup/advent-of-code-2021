@@ -25,6 +25,7 @@ impl ToString for Cave {
 
 type Path = Vec<Cave>;
 
+#[allow(dead_code)]
 fn print_path(p: &Path) {
 	for c in p {
 		print!("{} ", c.to_string());
